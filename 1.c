@@ -55,3 +55,29 @@ if(p_list[i].arrival_t <= t && p_list[i].burst_t < p_list[peak].burst_t && p_lis
 {
 peak = i;
 }
+if(p_list[peak].burst_t==0 && p_list[i].flag != 1)
+{
+p_list[i].flag = 1;
+p_list[peak].ct=t;p_list[peak].burst_t=9999;
+printf("P%d completes in %d\n",p_list[i].p_no,p_list[peak].ct);
+}
+}
+t++;
+(p_list[peak].burst_t)--;
+}
+for(i=0;i<n;i++)
+{
+p_list[i].taround_time=(p_list[i].ct)-(p_list[i].arrival_t);
+avg_taround_time=avg_taround_time+p_list[i].taround_time;
+p_list[i].wait_t=((p_list[i].taround_time)-a[i]);
+avg_w_t=avg_w_t+p_list[i].wait_t;
+}
+printf("PNO\tAT\tCT\tTA\tWTt\n");
+for(i=0;i<n;i++)
+{
+printf("P%d\t%d\t%d\t%d\t%d\n",p_list[i].p_no,p_list[i].arrival_t,p_list[i].ct,p_list[i].taround_time
+,p_list[i].wait_t);
+ }
+printf("Average Turn around Time: %f\t\n\n",avg_taround_time);
+printf("Average Waiting Time :\t %f\t\n",avg_w_t);
+}
